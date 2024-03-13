@@ -10,30 +10,21 @@
     Parse.serverURL = 'https://parseapi.back4app.com';
     Parse.initialize('mqfqFoDGEld8041WYS4D8UUUkqUlNQGJcrKHvuD5', 'NZunwBuAWmcS7L7E8Dezcyd0IrKX3RjSARPBJA75', 'zmAuh2sCwyl1IahLK7oCkZ37kcixwhs51kahDWr6');
 
-    async function cadastrarOrganizacao(event) {
-      event.preventDefault();
-
-      const nome = document.getElementById('nome').value;
-      const endereco = document.getElementById('endereco').value;
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-      const cnpj = document.getElementById('cnpj').value;
-
-      const ONGs = Parse.Object.extend('ONGs');
-      const novaOrganizacao = new ONGs();
-      novaOrganizacao.set('nome', nome);
-      novaOrganizacao.set('endereco', endereco);
-      novaOrganizacao.set('email', email);
-      novaOrganizacao.set('senha', senha);
-      novaOrganizacao.set('cnpj', cnpj);
-
-      try {
-        const result = await novaOrganizacao.save();
-        console.log('Nova organização cadastrada:', result);
-      } catch (error) {
-        console.error('Erro ao cadastrar organização:', error);
-      }
-    }
+    (async () => {
+  const myNewObject = new Parse.Object('ONGs');
+  myNewObject.set('nome', 'nome');
+  myNewObject.set('endereco', 'endereco');
+  myNewObject.set('email', 'email');
+  myNewObject.set('senha', 'senha');
+  myNewObject.set('cnpj', 'cnpj');
+  try {
+    const result = await myNewObject.save();
+    // Access the Parse Object attributes using the .GET method
+    console.log('ONGs created', result);
+  } catch (error) {
+    console.error('Error while creating ONGs: ', error);
+  }
+})();
   </script>
 </head>
 <body>
